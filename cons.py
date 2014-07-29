@@ -1,14 +1,9 @@
 #!/usr/local/bin/python2.7-32
 '''
+http://rosalind.info/problems/cons/
+Rosalind.info problem
+Find consensus sequence and print out matrix of base content from each site
 '''
-'''f = open("rosalind_sampletext.txt")
-alist = f.readlines()
-alist = [i.replace("\n","") for i in alist]
-DNAlist = []
-for i in range(1, len(alist), 2):
-	DNAlist.extend([alist[i]])
-print alist'''
-
 f = open("rosalind_cons.txt")
 sequenceCount = -1
 DNAlist = []
@@ -21,10 +16,6 @@ for line in f:
 for i in range(len(DNAlist)):
 	DNAlist[i] = DNAlist[i].replace("\r\n", "")
 	DNAlist[i] = DNAlist[i].replace("\n", "")
-
-
-
-
 a = [0]*len(DNAlist[0])
 c = [0]*len(DNAlist[0])
 t = [0]*len(DNAlist[0])
