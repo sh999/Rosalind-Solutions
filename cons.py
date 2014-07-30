@@ -50,26 +50,3 @@ print 'A:', " ".join(map(str,a))
 print 'C:', " ".join(map(str,c))
 print 'G:', " ".join(map(str,g))
 print 'T:', " ".join(map(str,t))
-
-
-
-
-
-
-	
-
-
-
-
-
-
-	
-	
-
-		
-	
-	
-	
-
-	
-	
