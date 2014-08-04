@@ -1,72 +1,66 @@
 #!/usr/local/bin/python2.7-32
 '''
+Solution for "Speeding Up Motif Finding"
+http://rosalind.info/problems/kmp/
+8/3/14
 '''
-'''f = open("rosalind_sampletext.txt")
-alist = f.readlines()
-alist = [i.replace("\n","") for i in alist]
-DNAlist = []
-for i in range(1, len(alist), 2):
-	DNAlist.extend([alist[i]])
-print alist'''
+import cProfile
 
-f = open("rosalind_cons.txt")
-sequenceCount = -1
-DNAlist = []
-for line in f:
-	if line[0] == '>':
-		sequenceCount = sequenceCount + 1
-		DNAlist.append("")
-	else:
-		DNAlist[sequenceCount] = DNAlist[sequenceCount] + line
-for i in range(len(DNAlist)):
-	DNAlist[i] = DNAlist[i].replace("\r\n", "")
-	DNAlist[i] = DNAlist[i].replace("\n", "")
+def PK(_position, _DNA):
+	# iterate through DNA sequence
+	DNA = _DNA
+	position = _position
+	start = -1
+	end = position 
+	# print DNA[start:end]
+	queries = []
+	prefixes = []
+	for i in range(end-1, start, -1):
+		# print "i = ",i, ". end",end,". end-i = ",end-i
+		if i > 0:
+			# print DNA[i:end],"and", DNA[0:end-i]
+			queries.extend([DNA[i:end]])
+			prefixes.extend([DNA[0:end-i]])
+	longest = 0
+	current = 0
+	for i in range(0,len(queries)):
+		# print queries[i], prefixes[i]
+		if queries[i] == prefixes[i]:
+			current = len(queries[i])
+			if current > longest:
+				longest = current
 
+			# print "equal"
+			# print "length = ", current
+	return longest
+		# print longest
+	# print queries, prefixes
 
+	# create a list of query substrings at each position p(k) arrays
+	# create reference prefix string at that position (only 1 ref)
+	# compare each query substring to reference prefix
+'''
+a = open("sampletext.txt")
+b = a.readlines()[1:]
+b = str(b)
+b = b.translate(None,"[]',\\n ")'''
 
+def main():
+	source = open("rosalind_sampletext.txt")
+	DNA = source.readlines()[1:]
+	DNA = str(DNA)
+	DNA = DNA.translate(None,"[]',\\n ")
+	fail_array = []
+	for i in range(1, len(DNA)+1):
+		fail_array.extend([PK(i, DNA)])
+	fail_array = str(fail_array)
+	fail_array = fail_array.translate(None,"[],")
+	print fail_array
+	output = open("rosalind_output.txt","w")
+	output.write(fail_array)
 
-a = [0]*len(DNAlist[0])
-c = [0]*len(DNAlist[0])
-t = [0]*len(DNAlist[0])
-g = [0]*len(DNAlist[0])
-for i in range(0, len(DNAlist[0])):
-	for j in range(0, len(DNAlist)):
-		if DNAlist[j][i] == 'A':
-			a[i] += 1
-		elif DNAlist[j][i] == 'C':
-			c[i] += 1
-		elif DNAlist[j][i] == 'T':
-			t[i] += 1
-		elif DNAlist[j][i] == 'G':
-			g[i] += 1
-
-consensus = [0]*len(DNAlist[0])
-highest = [0]*len(DNAlist[0])
-for i in range(0, len(consensus)):
-	highest[i] = a[i]
-	consensus[i] = 'A'
-	if c[i] > highest[i]:
-		highest[i] = c[i]
-		consensus[i] = 'C'
-	if t[i] > highest[i]:
-		highest[i] = t[i]
-		consensus[i] = 'T'
-	if g[i] > highest[i]:
-		highest[i] = g[i]
-		consensus[i] = 'G'	
-print "".join(consensus)
-print 'A:', " ".join(map(str,a))
-print 'C:', " ".join(map(str,c))
-print 'G:', " ".join(map(str,g))
-print 'T:', " ".join(map(str,t))
-
-
-
-
-
-
-	
-
+main()
+cProfile.run('main()')
 
 
 
