@@ -24,8 +24,9 @@ def PK(_position, _DNA):
 	longest = 0
 	current = 0
 	for i in range(0,len(queries)):
-		# print queries[i], prefixes[i]
+		print queries[i], prefixes[i]
 		if queries[i] == prefixes[i]:
+			print('match')
 			current = len(queries[i])
 			if current > longest:
 				longest = current
@@ -60,7 +61,7 @@ def main():
 	output.write(fail_array)
 
 main()
-cProfile.run('main()')
+# cProfile.run('main()')
 
 
 
