@@ -3,40 +3,67 @@ http://rosalind.info/problems/lcsm/
 9/7:
 Can get basic algorithm of finding longest match.
 Work on getting breaking out of the loop after finding match (use functions instead of breaks)
-Then generalize into functions to take arbitrary # of sequences
+Then generalize into functions to take arbitrary # of sequences (Done 8/9)
+Make shortest function
+	make it accept variable argument numbers
 '''
 from FASTA_extract import *
-# seqList = seqList("sampletext.txt")
-# for i in seqList:
-a = 'ATTA'
-aL = []
-b = 'ATTC'
-bL = []
+
+
+def substringList(s):
+	substrings = []
+	for window in range(1, len(s)+1):
+		substrings.append([])
+		for i in range(0, len(s)-window+1):
+			substrings[len(substrings)-1].append(s[i:i+window])
+	return substrings
+
+
+def shortest(a, b, c):
+	d = []
+	d.extend([a,b,c])
+	shortest = len(a)
+	for i in d:
+		if len(i) <= shortest:
+			shortest = len(i)
+	print shortest
+
+a = 'GATTACA'
+aL = substringList(a)
+b = 'TAGACCA'
+bL = substringList(b)
+c = 'GAT'
+cL = substringList(c)
+
+# shortest = shortest(a, b, c)
+
+# Backward iteration test
+'''
 print "aL and bL = "
-for window in range(1, len(a)+1):
-	aL.append([])
-	for i in range(0, len(a)-window+1):
-		aL[len(aL)-1].append(a[i:i+window])
-print aL
-for window in range(1, len(b)+1):
-	bL.append([])
-	for i in range(0, len(b)-window+1):
-		bL[len(bL)-1].append(b[i:i+window])
 print bL
 print "aL iterated backwards = "
 for i in range(len(aL)-1, -1, -1):
 	print aL[i]
 print "bL iterated backwards = "
 for i in range(len(bL)-1, -1, -1):
-	print bL[i]
+	print bL[i]'''
 
-for i in range(len(aL)-1, -1, -1):
-	for j, val in enumerate(aL[i]):
-		print val, bL[i]
-		if val in bL[i]:
-			keepLooping = false
+
+
+i = len(aL)-1 # index of last element of aL
+keepLooping = True
+while keepLooping and i > -1:	
+	for j, val in enumerate(aL[i]): # loop through each element of aL until it finds match in corresponding element in bL (each element has many entries)
+		print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
+		if val in bL[i] and val in cL[i]:
+			keepLooping = False
+			
+			match = val
+			print 'match found =', match
 			break
-			print 'match'
+	i -= 1
+			
+
 
 	
 	

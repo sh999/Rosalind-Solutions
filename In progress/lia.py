@@ -1,9 +1,6 @@
 '''
 http://rosalind.info/problems/lia/
-9/2/14- Start
-Do single mating scenario.  Print frequency of children
-9/4 (Done)- Check case to count homozygous/heterozygous/etc 
-9/5 Work on recursion function 
+
 '''
 import string
 def genotype(genString): # Returns a list form of a parent's genotype
@@ -37,9 +34,23 @@ def mate(parent1, parent2):
 	print "Homozygous dominant = ",dominant
 	print "heterozygous= ",heterozygous
 	print "Homozygous recessive = ",recessive
+	print "Offsprings after mating func= ",offsprings
+	print "\n\n"
+	return offsprings
+
 parent1 = genotype("Aa")
+print "parent 1 = ", parent1 
 parent2 = genotype("Aa")
-mate(parent1, parent2)
+# for i in range(0, len(offsprings)):
+	# offsprings[i] = genotype(offsprings[i])
+offsprings = mate(parent1, parent2) # Return a list of offsprings
+print "initial length of offpsrings = ",len(offsprings)
+for i in range(0, len(offsprings)):
+	print "Iterating offspring[i] = ",offsprings[i]
+	
+	offsprings = mate(offsprings[i], parent2) # Return a list of offsprings
+	print "offpsrings after iterating for",offsprings
+print offsprings
 
 
 
