@@ -50,7 +50,6 @@ def countFrequencies(offsprings):
 	print "\tHomozygous dominant = ",dominant
 	print "\theterozygous= ",heterozygous
 	print "\tHomozygous recessive = ",recessive
-	print "\tOffsprings after mating func= ",offsprings
 	print "\n...End countFrequencies"
 
 def countHets(genotypes):
@@ -61,27 +60,27 @@ def countHets(genotypes):
 		if (i[0] == 'A' and i[1] == 'a') or (i[0] == 'a' and i[1] == 'A'):
 			hetFreq += 1
 	hetFreq = hetFreq/len(genotypes)
-	print "\nhet freq = ",hetFreq
+	print "\nhet freq = ",hetFreq	
 	print "total indivs = ",len(genotypes)
 	print "\n...End countHets"
 
-print "Start:"
-parent1 = genotype("Aa")
-parent2 = genotype("Aa")
-print "parent 1 = ", parent1, " will mate with parent 2 = ", parent2
-# for i in range(0, len(offsprings)):
-	# offsprings[i] = genotype(offsprings[i])
-offsprings = mate(parent1, parent2) # Return a list of offsprings
-subOffsprings = []
-print "initial length of offsprings = ",len(offsprings)
-print "all offsprings = ",offsprings
-for i in range(0, len(offsprings)):
-	print "Iterating offspring[",i,"] = ",offsprings[i]
-	subOffsprings = mate(offsprings[i], parent2) # Return a list of offsprings
-	print "offsprings after iterating for",subOffsprings
-	offsprings.extend(subOffsprings)
-print "All offsprings combined = ",offsprings
-countHets(offsprings)
+def main():
+	print "Start:"
+	parent1 = genotype("Aa")
+	parent2 = genotype("Aa")
+	# print "parent 1 = ", parent1, " will mate with parent 2 = ", parent2
+	offsprings = mate(parent1, parent2) # Return a list of offsprings
+	'''subOffsprings = []
+	print "initial length of offsprings = ",len(offsprings)
+	print "all offsprings = ",offsprings
+	for i in range(0, len(offsprings)):
+		print "Iterating offspring[",i,"] = ",offsprings[i]
+		subOffsprings = mate(offsprings[i], parent2) # Return a list of offsprings
+		print "offsprings after iterating for",subOffsprings
+		offsprings.extend(subOffsprings)
+	print "All offsprings combined = ",offsprings
+	countHets(offsprings)'''
 
+main()
 
 
