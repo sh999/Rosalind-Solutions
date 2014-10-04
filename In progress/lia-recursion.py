@@ -6,7 +6,6 @@ Right = Triple of parent
 A list will hold 
 '''
 class Master:
-	
 	def __init__(self, a, limit):
 		self.topElement = a
 		self.allElements = [self.topElement]
