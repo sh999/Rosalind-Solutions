@@ -1,5 +1,5 @@
-generation = 55
-fecundity = 3
+generation = 5 # n
+fecundity = 3 # k
 prev_young = 1
 prev_adult = 0
 for i in range(0, generation-1):
@@ -9,3 +9,4 @@ for i in range(0, generation-1):
 	prev_young = current_young
 	prev_adult = current_adult
 	print current_total, 
+
