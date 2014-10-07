@@ -43,14 +43,14 @@ def findKey(randInts, key):
 
 inputFile = open("sampletext.txt")
 print inputFile.readlines()
-intAmt = 100
-intBound = 100000
-randInts = random.sample(xrange(-intBound,intBound), intAmt)
+intAmt = 100 # number of integers in list
+intBound = 100000 # -intBound to +intBound is the range of random integers
+randInts = random.sample(xrange(-intBound,intBound), intAmt) # Create random integers in bound with specific amt
 randInts.sort()
-key = [43,10]
+key = [43,10] # numbers to find in the sorted random list
 positionList = []
 for i in key:
-	positionList.append(findKey(randInts, i))
+	positionList.append(findKey(randInts, i)) # findKey returns position of key in the random list
 print positionList
 	
 
