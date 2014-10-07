@@ -26,9 +26,7 @@ def findKey(randInts, key):
 	print "position = ",pivotPos
 	return pivotPos + 1
 
-# a = ['5\n', '6\n', '10 20 30 40 50\n', '40 10 35 15 40 20']
-# print a
-a = open("sampletext.txt").readlines()
+a = ['5\n', '6\n', '10 20 30 40 50\n', '40 10 35 15 40 20']
 print a
 n = int(a[0])
 m = int(a[1])
@@ -38,10 +36,10 @@ intList = [int(intList[i]) for i in range(0, len(intList))]
 keyList = a[3].split()
 keyList = [int(keyList[i]) for i in range(0, len(keyList))]
 
+print intList
+print keyList
+
 for i in keyList:
 	positionList.append(findKey(intList, i)) # findKey returns position of key in the random list
-
-positionList = str(positionList)
-
-positionList = positionList.translate(None,"[],")
 print positionList
+
