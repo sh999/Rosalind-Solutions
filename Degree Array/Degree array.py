@@ -20,13 +20,8 @@ def process_textfile(myFile):
 	print vertex_edge_list
 
 
-
 myFile = open("sampletext.txt", "r")
 process_textfile(myFile)
-
-
-
-
 
 
 myFile.close()

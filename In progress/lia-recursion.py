@@ -5,6 +5,7 @@ On the left = double of parent
 Right = Triple of parent
 A list will hold 
 '''
+import pdb
 class Master:
 	def __init__(self, a, limit):
 		self.topElement = a
@@ -12,6 +13,7 @@ class Master:
 		self.limit = limit
 
 	def makeChildren(self, parent, counter):
+
 		if counter < self.limit:
 			print "Parent = ",parent
 			leftChild = 2 * parent
@@ -24,6 +26,7 @@ class Master:
 			self.makeChildren(leftChild, counter+1)
 			self.makeChildren(rightChild, counter+1)
 
+pdb.set_trace()
 a = Master(1, 3)
 a.makeChildren(1, 0)
 print a.allElements
