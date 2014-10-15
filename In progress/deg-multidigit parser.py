@@ -1,3 +1,6 @@
+'''
+Can take in input and convert to pair of numbers
+'''
 def deleteNewlines(myString):
 	myString = myString.split()
 	myString = list(myString)
