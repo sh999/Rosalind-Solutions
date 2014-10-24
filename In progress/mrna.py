@@ -1,6 +1,6 @@
 '''
 mrna.py
-Pittfals of reversing translation
+Inferring mRNA from protein
 http://rosalind.info/problems/mrna/
 Notes:
 	If a mod n = b mod n, a and b are congruent modulo 

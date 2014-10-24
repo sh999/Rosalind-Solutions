@@ -35,8 +35,6 @@ def assignGroups(inputList):
 		for j in range(0, len(inputList[i])):
 			print "node = ",inputList[i][j]
 			checkForID(node)
-
-	
 	pass
 def outputResult():
 	pass
