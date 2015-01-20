@@ -12,7 +12,6 @@ def seqList(file):
 		if i[0] == '>':
 			b.append('')
 		else:
-			
 			b[-1] = b[-1] + i.replace("\n","")
 	return b
 def titleList(file):
@@ -23,4 +22,11 @@ def titleList(file):
 		if i[0] == '>':
 			b.append(i.replace("\n","").replace(">",""))
 	return b
+
+def testRun():
+	file = "sampletext.txt"
+	print seqList(file)
+	print titleList(file)
+
+
 

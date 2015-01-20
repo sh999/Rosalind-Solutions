@@ -5,19 +5,47 @@ http://rosalind.info/problems/splc/
 Pseudocode:
 	Process input fasta file:  Store first string as gene.  Store subsequent as introns
 	Iterate through each intron
-		Find where intron is in gene string.  Remove the intron within the gene
+		Find where intron is in gene string.  Splice the intron out of the gene
 	Translate gene string
 '''
-def processFile():
-	pass
-def iterateIntrons():
-	pass
-def findIntronInGene():
-	pass
+def seqList(file):
+	a = open(file)
+	a = a.readlines()
+	b = []
+	for i in a:
+		if i[0] == '>':
+			b.append('')
+		else:
+			b[-1] = b[-1] + i.replace("\n","")
+	return b
+def titleList(file):
+	a = open(file)
+	a = a.readlines()
+	b = []
+	for i in a:
+		if i[0] == '>':
+			b.append(i.replace("\n","").replace(">",""))
+	return b
+
+def processFile(file):
+	sequences = seqList(file)
+	return sequences
+
+def spliceOutIntrons(gene, introns):
+	for i in introns:
+		gene = gene.replace(i, 'xxxx')
+	return gene
+
 def translateDNA():
 	pass
+	
 def main():
-	pass
+	sequences = processFile("sampletext.txt")
+	gene = sequences[0]
+	introns = sequences[1:]
+	splicedGene = spliceOutIntrons(gene, introns)
+	
+
 main()
 
 

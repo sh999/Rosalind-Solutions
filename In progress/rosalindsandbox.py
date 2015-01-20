@@ -1,15 +1,20 @@
-def deleteNewlines(myString):
-	myString = myString.split()
-	myString = list(myString)
-	return myString
 
-f = open("sampletext.txt")
-f = f.readlines()
-print f
-for i in range(0, len(f)):
-	
-	f[i] = deleteNewlines(f[i])
-	for j in range(0, len(f[i])):
-		f[i][j] = int(f[i][j])
-	
-print f
+def splice():
+
+	a = 'ahaxxxsdf'
+	b = 'xxx'
+	for i in range(0, len(a)-len(b)+1):
+		print a[i:i+3]
+		if b == a[i:i+3]:
+			print 'match'
+		else:
+			print 'no match'
+
+def replaceChars():
+	a = "asdfadfxxxasasdf"
+	print a.replace("xxx","ooo")
+
+def main():
+	replaceChars()
+
+main()

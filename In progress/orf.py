@@ -11,3 +11,5 @@ Algorithm:
 		Build DNA sequences out of all the possible combinations of the start/stop codons that are in frame
 	Reverse complement, do same process
 '''
+from FASTA_extract import *
+print seqList("sampletext.txt")
