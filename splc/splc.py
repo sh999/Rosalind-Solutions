@@ -8,6 +8,7 @@ Pseudocode:
 		Find where intron is in gene string.  Splice the intron out of the gene
 	Translate gene string
 '''
+from Translate import *
 def seqList(file):
 	a = open(file)
 	a = a.readlines()
@@ -33,19 +34,15 @@ def processFile(file):
 
 def spliceOutIntrons(gene, introns):
 	for i in introns:
-		gene = gene.replace(i, 'xxxx')
+		gene = gene.replace(i, '')
 	return gene
-
-def translateDNA():
-	pass
 	
 def main():
-	sequences = processFile("sampletext.txt")
+	sequences = processFile("rosalind_splc.txt")
 	gene = sequences[0]
 	introns = sequences[1:]
 	splicedGene = spliceOutIntrons(gene, introns)
-	
-
+	print translate(splicedGene)
 main()
 
 

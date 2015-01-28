@@ -31,6 +31,7 @@ AminoAcids = [Ala, Arg, Asn, Asp, Cys, Gln, Glu, Gly, His, Ile, Leu, Lys,
 sourcefile = open("rosalind_prot.txt")
 RNASequence = sourcefile.read()
 DNASequence = RNASequence.replace('U','T')
+
 Codons = []
 AminoAcidSequence = []
 '''
