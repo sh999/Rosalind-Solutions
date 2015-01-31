@@ -10,20 +10,21 @@ Pseudocode:
 Strategy:
 	Can work on individual modules instead of trying to tackle all problem at once
 
-Progres:
+Progress:
 	Check for palindrome for one length
-
+	1/30: work on palindromeLocations, figure out strategy on communicating location with substrings (list consisting of position+string?)
 '''
 def processFile(): # Takes FASTA file and extracts sequence
 	return "TCAATGCATGCGGGTCTATATGCAT"
 	
 def goThroughString(sequence): # Iterates through sequence and creates subsequences
 	minLength = 4 # Min and Max length are palindrome lengths to be checked
-	maxLength = 12
+	maxLength = 8
 	substrings = []
-	substringLength = 12
-	for i in range(0, len(sequence)-substringLength):
-		substrings.append(sequence[i:i+substringLength])
+	for j in range(minLength, maxLength+1):
+		for i in range(0, len(sequence)-j+1):
+			print "appending ",sequence[i:i+j]
+			substrings.append(sequence[i:i+j])
 	return substrings
 
 def checkIfPalindrome(string):
@@ -40,13 +41,24 @@ def checkIfPalindrome(string):
 			revComp += 'A'
 	print "revcomp.. =",revComp
 	if revComp == string:
+		
 		return True
 	return False
 
-def main():
+def palindromeLocations(): # Gives value of location, length of palindromes
+	pass
+
+def test():
 	# print "Substrings =",goThroughString(sequence)
 	string = "CATATGS"
 	checkIfPalindrome(string)
 	print "Sequence =",string
 	print "Is %s a palindrome? %s" %(string,checkIfPalindrome(string))
+
+def main():
+	substrings = goThroughString(processFile())
+	for i in substrings:
+		print(checkIfPalindrome(i))
+
+	
 main()
