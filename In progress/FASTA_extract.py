@@ -27,6 +27,7 @@ def testRun():
 	file = "sampletext.txt"
 	print seqList(file)
 	print titleList(file)
+	
 
 
 
