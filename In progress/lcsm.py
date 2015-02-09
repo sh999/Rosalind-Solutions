@@ -6,18 +6,18 @@ Work on getting breaking out of the loop after finding match (use functions inst
 Then generalize into functions to take arbitrary # of sequences (Done 8/9)
 Make shortest function
 	make it accept variable argument numbers
+2/9/15: Revisit program
 '''
 from FASTA_extract import *
 
-
-def substringList(s):
+def substringList(s): # Given string, returns all possible substrings of all possible lengths
 	substrings = []
 	for window in range(1, len(s)+1):
 		substrings.append([])
 		for i in range(0, len(s)-window+1):
 			substrings[len(substrings)-1].append(s[i:i+window])
+	# print "substrings = ", substrings
 	return substrings
-
 
 def shortest(a, b, c):
 	d = []
@@ -28,15 +28,13 @@ def shortest(a, b, c):
 			shortest = len(i)
 	print shortest
 
-a = 'GATTACA'
+a = 'GAATACA'
 aL = substringList(a)
-b = 'TAGACCA'
+b = 'TAGAACA'
 bL = substringList(b)
-c = 'GAT'
+c = 'GAA'
 cL = substringList(c)
-
 # shortest = shortest(a, b, c)
-
 # Backward iteration test
 '''
 print "aL and bL = "
@@ -48,26 +46,18 @@ print "bL iterated backwards = "
 for i in range(len(bL)-1, -1, -1):
 	print bL[i]'''
 
-
-
 i = len(aL)-1 # index of last element of aL
 keepLooping = True
-while keepLooping and i > -1:	
+while keepLooping and i > -1:
 	for j, val in enumerate(aL[i]): # loop through each element of aL until it finds match in corresponding element in bL (each element has many entries)
-		print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
+		# print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
+		print "enumerated = ", aL[i]
 		if val in bL[i] and val in cL[i]:
 			keepLooping = False
-			
 			match = val
 			print 'match found =', match
 			break
 	i -= 1
-			
-
-
-	
-	
-
 '''
 window = 3
 for i in range(0, len(a)-window+1):
