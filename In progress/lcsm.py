@@ -10,7 +10,10 @@ Make shortest function
 '''
 from FASTA_extract import *
 
-def substringList(s): # Given string, returns all possible substrings of all possible lengths
+def substringList(s):
+	'''
+	Given string, returns all possible substrings of all possible lengths
+	'''
 	substrings = []
 	for window in range(1, len(s)+1):
 		substrings.append([])
@@ -28,6 +31,9 @@ def shortest(a, b, c):
 			shortest = len(i)
 	print shortest
 
+''
+
+'''Short sequences
 a = 'GAATACA'
 aL = substringList(a)
 b = 'TAGAACA'
@@ -35,8 +41,17 @@ bL = substringList(b)
 c = 'GAA'
 cL = substringList(c)
 # shortest = shortest(a, b, c)
-# Backward iteration test
 '''
+file = "sampletext.txt"
+a = seqList("sampletext.txt")[0]
+aL = substringList(a)
+b = seqList("sampletext.txt")[1]
+bL = substringList(b)
+c = seqList("sampletext.txt")[2]
+cL = substringList(c)
+'''
+Backward iteration test
+
 print "aL and bL = "
 print bL
 print "aL iterated backwards = "
@@ -49,8 +64,10 @@ for i in range(len(bL)-1, -1, -1):
 i = len(aL)-1 # index of last element of aL
 keepLooping = True
 while keepLooping and i > -1:
-	for j, val in enumerate(aL[i]): # loop through each element of aL until it finds match in corresponding element in bL (each element has many entries)
-		# print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
+	for j, val in enumerate(aL[i]):
+		'''loop through each element of aL until it finds match in corresponding element in bL (each element has many entries)
+		print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
+		'''
 		print "enumerated = ", aL[i]
 		if val in bL[i] and val in cL[i]:
 			keepLooping = False
@@ -58,6 +75,8 @@ while keepLooping and i > -1:
 			print 'match found =', match
 			break
 	i -= 1
+
+
 '''
 window = 3
 for i in range(0, len(a)-window+1):

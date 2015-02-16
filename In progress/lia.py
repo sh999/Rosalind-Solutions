@@ -4,34 +4,48 @@ http://rosalind.info/problems/lia/
 '''
 import string
 
-def genotype(genString): # Returns a list form of a parent's genotype
-    genList = []
-    for allele in genString:
-    	genList.extend(allele)
-    return genList
+def genotype(genString): 
+	'''
+	Returns a list form of a parent's genotype
+	'''
+	genList = []
+	for allele in genString:
+		genList.extend(allele)
+	return genList
 
-def mate(parent1, parent2):
-	print "\nRunning mate.."
+def mate(parent1, parent2): 
+	''' 
+	Generates offsprings by passing parents to createOffSprings()
+	Then calls countFrequencies() to quantify results
+	Returns a list of offsprings 
+	'''
+	print "\nRunning mate()"
 	print parent1, "mates with", parent2
 	offsprings = createOffsprings(parent1, parent2)
-	print 'Offsprings = ', offsprings
 	countFrequencies(offsprings)
-	print "\n..End mate()"
+	print "\nEnd mate()"
 	return offsprings
 
 def createOffsprings(p1, p2):
-	# Create offsprings by combining alleles
-	print "\nRunning createOffsprings().."
+	'''
+	Create offsprings by combining parental alleles
+	Called by mate()
+	Returns offpsrings list to parent function mate()
+	'''
+	print "\n...Running createOffsprings()"
 	offsprings = []
 	for i in p1:
 		for j in p2:
 			offsprings.append([i,j])
-	print "\n..End createOffsprings"
+	print 'Offsprings = ', offsprings
+	print "End createOffsprings()"
 	return offsprings
 
 def countFrequencies(offsprings):
-	# Count offspring frequencies
-	print "\nRunning countFrequencies()..."
+	'''
+	Count offspring frequencies, returns # offsprings that are dominant, het, or recessive
+	'''
+	print "\n...Running countFrequencies()..."
 	dominant = 0
 	heterozygous = 0
 	recessive = 0
@@ -52,7 +66,7 @@ def countFrequencies(offsprings):
 	print "\tHomozygous recessive = ",recessive
 	print "\n...End countFrequencies"
 
-def countHets(genotypes):
+def countHets(genotypes): # not necessary now
 	print "\nRunning countHets()..."
 	hetFreq = 0.0
 	for i in genotypes:
@@ -70,6 +84,8 @@ def main():
 	parent2 = genotype("Aa")
 	# print "parent 1 = ", parent1, " will mate with parent 2 = ", parent2
 	offsprings = mate(parent1, parent2) # Return a list of offsprings
+	
+
 	'''subOffsprings = []
 	print "initial length of offsprings = ",len(offsprings)
 	print "all offsprings = ",offsprings
