@@ -19,35 +19,39 @@ def createOffsprings(p1, p2):
 			offsprings.append([i,j])
 	return offsprings
 
-def convertToGenotype(alleleList):
-	genotype = alleleList[0][0] + alleleList[1][0] + alleleList[0][1] + alleleList[1][1]
-	
-	# print 'genotype = ', genotype
-	if genotype[0].islower():
-		genotype = genotype[1] + genotype[0] + genotype[2:4]
-	if genotype[2].islower():
-		genotype = genotype[0:2] + genotype[3] + genotype[2]
-	return genotype
+def genotypeFormat(offsprings):
+	offspringGenotypes = []
+
+	for child in offsprings: # converts ['AB', 'AB'] to 'AABB'
+		genotype = child[0][0] + child[1][0] + child[0][1] + child[1][1]
+		if genotype[0].islower():
+			genotype = genotype[1] + genotype[0] + genotype[2:4]
+		if genotype[2].islower():
+			genotype = genotype[0:2] + genotype[3] + genotype[2]
+		offspringGenotypes.append(genotype)
+		# print "genotype = ", genotype
+		# print "list = ", offspringGenotypes
+	return offspringGenotypes
 
 def countHets(genotypes): 
 	a = 0
 	for child in genotypes:
-		
 		if child[0].isupper() and child[1].islower() and child[2].isupper() and child[3].islower():
 			a += 1
 	return a
 	
-
 def main():
 	parent1 = createGametes("AaBb")
-	print "gametes = ", parent1
-	offsprings = createOffsprings(parent1, parent1)
+	hetMate = "AaBb"
+	hetMateGametes = createGametes(hetMate)
+	# print "gametes = ", parent1
+	offsprings = createOffsprings(parent1, hetMateGametes)
 	# print "offsprings = ", offsprings
-	offspringGenotypes = []
-	for child in offsprings:
-		# print 'child = ', child
-		offspringGenotypes.append(convertToGenotype(child))
-	print 'offspring genotypes = ', offspringGenotypes
+	offspringGenotypes = genotypeFormat(offsprings)
+	# print 'Offspring genotypes after = ', offspringGenotypes
 	hetAmt = countHets(offspringGenotypes)
-	print 'het amt = ', hetAmt
+	# print 'het amt after 1st generation = ', hetAmt
+	for i in offspringGenotypes:
+		print i, "x", hetMate, " = ", genotypeFormat(createOffsprings(createGametes(i), hetMateGametes))
+
 main()
