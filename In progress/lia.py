@@ -8,9 +8,11 @@ def genotype(genString):
 	'''
 	Returns a list form of a parent's genotype
 	'''
+	print "\nRunning genotype()"
 	genList = []
 	for allele in genString:
 		genList.extend(allele)
+	print "Parent %s is turned into gametes %s" % (genString, genList)
 	return genList
 
 def mate(parent1, parent2): 
