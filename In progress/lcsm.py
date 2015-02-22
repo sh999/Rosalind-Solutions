@@ -9,8 +9,8 @@ Make shortest function
 2/9/15: Revisit program
 '''
 from FASTA_extract import *
-
-def substringList(s):
+import cProfile
+def getSubstrings(s):
 	'''
 	Given string, returns all possible substrings of all possible lengths
 	'''
@@ -35,21 +35,23 @@ def shortest(a, b, c):
 
 '''Short sequences
 a = 'GAATACA'
-aL = substringList(a)
+aL = getSubstrings(a)
 b = 'TAGAACA'
-bL = substringList(b)
+bL = getSubstrings(b)
 c = 'GAA'
-cL = substringList(c)
+cL = getSubstrings(c)
 # shortest = shortest(a, b, c)
 '''
-file = "sampletext.txt"
-a = seqList("sampletext.txt")[0]
-aL = substringList(a)
-b = seqList("sampletext.txt")[1]
-bL = substringList(b)
-c = seqList("sampletext.txt")[2]
-cL = substringList(c)
-'''
+def main():
+	file = "sampletext.txt"
+	a = seqList(file)[0]
+	aL = getSubstrings(a)
+	b = seqList(file)[1]
+	bL = getSubstrings(b)
+	c = seqList(file)[2]
+	cL = getSubstrings(c)
+	findLongestSharedMatch(aL, bL, cL)
+	'''
 Backward iteration test
 
 print "aL and bL = "
@@ -61,21 +63,26 @@ print "bL iterated backwards = "
 for i in range(len(bL)-1, -1, -1):
 	print bL[i]'''
 
-i = len(aL)-1 # index of last element of aL
-keepLooping = True
-while keepLooping and i > -1:
-	for j, val in enumerate(aL[i]):
-		'''loop through each element of aL until it finds match in corresponding element in bL (each element has many entries)
-		print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
-		'''
-		print "enumerated = ", aL[i]
-		if val in bL[i] and val in cL[i]:
-			keepLooping = False
-			match = val
-			print 'match found =', match
-			break
-	i -= 1
+	# print 'aL = ', aL
+def findLongestSharedMatch(aL, bL, cL):
 
+	i = len(aL)-1 # index of last element of aL
+	keepLooping = True
+	while keepLooping and i > -1:
+		for j, val in enumerate(aL[i]):
+			'''loop through each element of aL from longest to shortest until it finds match in corresponding element in bL (each element has many entries)
+			print "Checking if",val,"is in.. bL:", bL[i],"..and cL:", cL[i]
+			'''
+			# print "enumerated = ", val
+			if val in bL[i]:
+				if val in cL[i]:
+					keepLooping = False
+					match = val
+					print 'match found =', match
+					break
+		i -= 1
+
+cProfile.run('main()')
 
 '''
 window = 3
